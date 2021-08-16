@@ -18,17 +18,22 @@ from sklearn.svm import SVC
 
 from sklearn.preprocessing import StandardScaler
 
-df = pd.read_csv("E:/Internships/ML_internship(smartknowers)/data/diabetes.csv")
+df = pd.read_csv("diabetes.csv")
+
+SS = StandardScaler()
+
+df
+
+df[['Glucose', 'BloodPressure', 'SkinThickness','Insulin','BMI']] = StandardScaler().fit_transform(df[['Glucose', 'BloodPressure','SkinThickness','Insulin','BMI']])
 
 x = df.iloc[:, 0:8].values
 y = df.iloc[:, 8].values
 
+x
+
 x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.2, random_state=0)
 
-# SS = StandardScaler()
-
-# x_train = SS.fit_transform(x_train)
-# x_test = SS.fit_transform(x_test)
+x_train
 
 x_train
 
@@ -38,10 +43,11 @@ Model.fit(x_train, y_train)
 
 y_pred = Model.predict(x_test)
 
-print(y_pred)
+y_pred
 
-print(y_test)
+y_test
 
-print(accuracy_score(y_test,y_pred))
+accuracy_score(y_test,y_pred)
 
-print(confusion_matrix(y_test,y_pred))
+confusion_matrix(y_test,y_pred)
+
